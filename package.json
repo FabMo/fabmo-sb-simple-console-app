@@ -1,0 +1,15 @@
+{
+  "name": "GRID",
+  "main": "./index.html",
+  "icon": "./assets/img/icon.png",
+  "icon_color": "red",
+  "author": "Ted Hall",
+  "version": "0.0.06",
+  "website": "http://www.shopbottools.com",
+  "description": "Primary 3D-AR-Style Interface for FabMo/Sb4",
+  "id": "fabmo-grid",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-zip": "^0.17.1"
+  }
+}

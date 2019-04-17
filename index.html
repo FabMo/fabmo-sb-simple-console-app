@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>GRID for FabMo</title>
+		<!-- TH; initially derived from THREE.js example templates, particularly webgl_physics_cloth.html -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">		<!-- Draggable DIV -->
+		<link href="https://fonts.googleapis.com/css?family=Roboto+Mono:Light" rel="stylesheet" type="text/css">
+		<link href="css/style.css" rel="stylesheet">
+	</head>
+
+	  <script src="js/libs/fabmo.js"></script>
+
+		<script src="js/libs/three.js"></script>
+		<script src="js/controls/OrbitControls.js"></script>
+		<script src="js/ckWebGL.js"></script>
+		<script src="js/libs/stats.min.js"></script> <!--for little 3js data window; DEV-->
+		<script src="js/libs/XgridHelper.js"></script> <!--modified grid helper for rect grids; DEV-->
+
+		<script src='js/lines/LineSegmentsGeometry.js'></script>
+		<script src='js/lines/LineGeometry.js'></script>
+		<script src='js/lines/WireframeGeometry2.js'></script>
+		<script src='js/lines/LineMaterial.js'></script>
+		<script src='js/lines/LineSegments2.js'></script>
+		<script src='js/lines/Line2.js'></script>
+		<script src='js/lines/Wireframe.js'></script>
+
+		<script src="js/libs/jquery-3.3.1.min.js"></script>
+
+	<body>
+		<div id="container"><br /><br /><br /><br /><br />Loading...</div>
+
+		<!--Orbit Control Sensor Box-->
+		<div id="LittleGreenDiv" style="position: absolute; left: 800px; top: 500px">
+			<div id="LittleGreenDivheader">---</div>
+  		<div id="LittleGreenDivSensor"></div>
+		</div>
+
+		<div class="row">
+		<!--Sb4 Menu System-->
+		<div class="col">	
+			<div class="dropdown px-2" id="info">
+				<span>	
+				  <button class="btn btn-secondary bg-transparent text-reset px-1 mx-0 mb-1" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-placement="below" title="CUT, Edit, or Convert PART FILES">
+						<strong>F</strong>iles
+					</button> <button class="dropdown-menu bg-transparent text-reset" id="menu_files"> </button>
+				</span>
+				<span>
+					<button class="btn btn-secondary bg-transparent text-reset px-1 mx-0 mb-1" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-placement="below" title="Cutting Speed Motion Commands">
+						<strong>M</strong>oves
+					</button> <button class="dropdown-menu bg-transparent text-reset" id="menu_moves"> </button>							
+				</span>
+				<span>
+					<button class="btn btn-secondary bg-transparent text-reset px-1 mx-0 mb-1" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-placement="below" title="Jog/Rapid Speed Motion Commands">
+						<strong>J</strong>ogs
+					</button> <button class="dropdown-menu bg-transparent text-reset" id="menu_jogs"> </button>							
+  				</span>
+				<span>
+					<button class="btn btn-secondary bg-transparent text-reset px-1 mx-0 mb-1" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-placement="below" title="Predefined Cuts and Macros">
+						<strong>C</strong>uts
+					</button> <button class="dropdown-menu bg-transparent text-reset" id="menu_cuts"> </button>							
+	  			</span>
+				<span>
+					<button class="btn btn-secondary bg-transparent text-reset px-1 mx-0 mb-1" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-placement="below" title="Set Current Location of Axes to Zero">
+						<strong>Z</strong>ero
+					</button> <button class="dropdown-menu bg-transparent text-reset" id="menu_zero"> </button>							
+	  			</span>
+				<span>
+					<button class="btn btn-secondary bg-transparent text-reset px-1 mx-0 mb-1" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-placement="below" title="Enter or Change a Setting">
+						<strong>S</strong>ettings
+					</button> <button class="dropdown-menu bg-transparent text-reset" id="menu_settings"> </button>							
+	  			</span>
+				<span>
+					<button class="btn btn-secondary bg-transparent text-reset px-1 mx-0 mb-1" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-placement="below" title="Set or Change Configuration Values">
+						<strong>V</strong>alues
+					</button> <button class="dropdown-menu bg-transparent text-reset" id="menu_values"> </button>							
+	  			</span>
+				<span>
+					<button class="btn btn-secondary bg-transparent text-reset px-1 mx-0 mb-1" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-placement="below" title="Get HELP">
+						<strong>H</strong>elp
+					</button> <button class="dropdown-menu bg-transparent text-reset" id="menu_help"> </button>							
+				  </span>
+			</div>
+		  </div>	
+      <!-- Command Input -->
+			<div class="col"> 
+				<form class="form-group pt-1">
+					<!--	<label for="CmdInp" class="bg-transparent">CMD:</label>  -->
+				    <input class="form-control form-row bg-transparent text-reset" type="text" placeholder="CMD: {2-Letter OpenSBP Command, followed by parameters ...}">
+				</form>
+		  </div>
+		</div>	
+
+		
+	<!--	
+		<div >
+			<div class="callout panel">
+			  <form>
+				<div class="row">
+				  <div class="large-12 columns">
+					<label class="show-for-small-only">Command Input</label>
+					<label class="show-for-medium-up"><strong>Command Input</strong> (select from menu above or type Commands directly here)</label>
+					<form>
+					  <input type="text" autocomplete="off" autocorrect="off" autofill="off" spellcheck ="false" id="cmd-input" placeholder="2-Letter OpenSBP Command, {followed by parameters ...}" value="" />
+					</form>
+				  </div>
+				</div>
+			  </form>
+		</div>
+		-->
+
+
+		<!--DRO Display-->
+		<div id="dro">
+			<p style="top: 20px" id="tool-display-x"> X ---.--- </p>
+			<p style="top: 80px" id="tool-display-y"> Y ---.--- </p>
+			<p style="top: 140px" id="tool-display-z"> Z ---.--- </p>
+		</div>
+
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	</body>
+	
+	<script src='js/init-grid-graphics.js'></script>
+	<script src='js/init-sbp-menu.js'></script>
+
+
+	<script src='js/fat-lines.js'></script>
+	<script src='js/fat-lines-example.js'></script>
+
+	<script src='js/get-client-info.js'></script>
+	<script src='js/main.js'></script>
+	<script src='js/configuration.js'></script>
+
+	<script src='js/sb4.js'></script>
+
+</html>
