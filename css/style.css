@@ -1,0 +1,90 @@
+#container {
+    position: absolute;
+    top: 0;
+}
+body {
+    overflow: hidden;
+    margin: 0;
+    color: #61443e;
+    font-family:Monospace;
+    font-size:13px;
+    text-align:center;
+ /*	background-color: #bfd1e5; */
+        /* gradient fallbacks taken from csstricks.com */
+          background-color: grey;
+          /* SVG fallback for IE 9 (could be data URI, or could use filter) */
+    /*	  background-image: url(fallback-gradient.svg); */
+          /* Safari 4, Chrome 1-9, iOS 3.2-4.3, Android 2.1-3.0 */
+          background-image: -webkit-gradient(linear, left top, right top, from(grey), to(#f06d06));
+          /* Safari 5.1, iOS 5.0-6.1, Chrome 10-25, Android 4.0-4.3 */
+          background-image: -webkit-linear-gradient(left, grey, #f06d06);
+          /* Firefox 3.6 - 15 */
+          background-image: -moz-linear-gradient(left, grey, #f06d06);
+          /* Opera 11.1 - 12 */
+          background-image: -o-linear-gradient(left, grey, #f06d06);
+          /* Opera 15+, Chrome 25+, IE 10+, Firefox 16+, Safari 6.1+, iOS 7+, Android 4.4+ */
+          background-image: linear-gradient(to right, grey, #f06d06);
+          margin: 0px;
+          overflow: hidden;
+}
+#info, #neonmenu1 {
+    font-family: 'Roboto Mono', monospace;
+    position: absolute;
+    text-align: left;
+    top: 0px; width: 80%;
+    padding-top: 5px; padding-left: 2%;
+    font-size:20px;
+    color: #94e3fd;
+    text-shadow: 0 0 0.1em #fff, 0 0 0.2em #b0b0ca, 0 0 0.3em #2d2dca,
+    0 0 0.3em #0000cc,
+ 0 0 0.6em #00f, 0 0 0.8em #00f, 0 0 1.0em #00f, 0 0 1.2em #00f;
+}
+#dro, #tool-display-x, #tool-display-y, #tool-display-z {
+    font-family: 'Roboto Mono', monospace;
+    text-align:right;
+    top: 5%; width: 97%;
+    font-size:60px;
+    color: #FFE105;
+    line-height:120%;
+    text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em #f00;
+/*,    0 0 0.4em #77f;
+ ,  0 0 0.6em #00f, 0 0 0.8em #00f, 0 0 1.0em #00f, 0 0 1.2em #00f; */
+    position: absolute
+}
+
+#LittleGreenDiv {
+    position: absolute;
+    z-index: 9;
+    width: 200px;
+    height: 200px;
+    border-style: solid;
+    border-width: thin;
+    background-color: rgba(247, 190, 31, 0.15);
+    border-radius: 12px;
+    border-color: rgba(255, 255, 0, 0.35);
+ }
+#LittleGreenDivheader {
+    width: 95%;
+    margin-left: auto; 
+    margin-right: auto;
+    margin-top: 2%; 
+    padding: -2px;
+    border-radius: 12px;
+    cursor: move;
+    z-index: 10;
+    background-color: rgba(243, 222, 33, 0.15);
+    color: #fff;
+  }
+#LittleGreenDivSensor {
+    width: 200px;
+    height: 175px;
+    z-index: 11;
+    background-color: transparent;
+    color: #fff;
+}
+  
+p {
+    line-height: 1.0em;
+      margin: 0.05em 0;
+}
+a { color: #AED6F1  ; }
