@@ -1,12 +1,39 @@
 body {
+	background-color: rgb(235,136,55);
 	margin-top: 0px;
 	overflow: hidden;
 }
+.body-container{
+	background-color:rgb(235,136,55)!important;
+}
+
 body.noScroll body.dialogShowing { /* ...or body.dialogShowing */
 	overflow: hidden;
   }
   
-#config-system-config {
+  #dro, #tool-display-x, #tool-display-y, #tool-display-z {
+    font-family: 'Roboto Mono', monospace;
+    font-size:75px;
+    text-align: center;
+	background-color: rgb(235,136,55);
+	color: #FFE105;
+    line-height:100%;
+    text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em #f00;
+/*,    0 0 0.4em #77f;
+ ,  0 0 0.6em #00f, 0 0 0.8em #00f, 0 0 1.0em #00f, 0 0 1.2em #00f; */
+}
+
+#macros {
+    font-family: 'Roboto Mono', monospace;
+    font-size:75px;
+    text-align: center;
+	background-color: rgb(235,136,55);
+	color: #FFE105;
+    line-height:100%;
+    text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em #f00;
+}
+
+  #config-system-config {
 	font-family: monospace;
 	word-wrap: break-word;
 }
