@@ -1,7 +1,7 @@
 {
   "name": "CONSOLE",
   "main": "./index.html",
-  "icon": "./assets/img/icon.png",
+  "icon": "icon.png",
   "icon_color": "grey",
   "author": "Ted Hall",
   "version": "0.0.01",
