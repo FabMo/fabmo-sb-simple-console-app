@@ -1,67 +1,204 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<title>CONSOLE for FabMo</title>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
-		<link href="css/style.css" rel="stylesheet">
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">		<!-- Draggable DIV -->
-		<link href="https://fonts.googleapis.com/css?family=Roboto+Mono:Light" rel="stylesheet" type="text/css">
-	</head>
+<!doctype html>
+<html class="no-js" lang="en">
 
-	  <script src="js/libs/fabmo.js"></script>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ShopBot Controls SB4</title>
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/foundation.min.css">
+<!--  <link rel="stylesheet" href="css/foundation.css" /> -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
 
-		<script src="js/libs/three.js"></script>
-		<script src="js/controls/OrbitControls.js"></script>
-		<script src="js/ckWebGL.js"></script>
-	
+<body>
+  <script src="js/lib/modernizr.js"></script>
+  <script src="js/lib/jquery.js"></script>
+  <script src="js/lib/bootstrap.min.js"></script>
+  <script src="js/lib/fabmo.js"></script>
+  
+  <script type="text/javascript">
+    var fabmo = new FabMoDashboard();
+  </script>
 
-		<script src="js/libs/stats.min.js"></script> <!--for little 3js data window; DEV-->
-		<script src="js/libs/XgridHelper.js"></script> <!--modified grid helper for rect grids; DEV-->
+  <nav class="top-bar" data-topbar role="navigation" style="background-color: dark">
+<!--    <ul class="title-area">
+      <li class="name"></li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+    </ul>
+-->
+    <section class="top-bar-section">
+      <ul class="left">
+        <li class="divider"></li>
+        <li class="has-dropdown">
+          <a style="background-color: dark"><strong>F</strong>iles</a>
+          <ul class="dropdown" id="menu_files">
+            <li><label>CUT, Edit, or Convert PART FILES</label></li>
+          </ul>
+        </li>
+        <li class="divider"></li>
+        <li class="has-dropdown">
+          <a style="background-color: dark;"><strong>M</strong>oves</a>
+          <ul class="dropdown" id="menu_moves">
+            <li><label>Basic Movement Commands</label></li>
+          </ul>
+        </li>
+        <li class="divider"></li>
+        <li class="has-dropdown">
+          <a style="background-color: dark;"><strong>J</strong>ogs</a>
+          <ul class="dropdown" id="menu_jogs">
+            <li><label>Jog or Rapid Motion Commands</label></li>
+          </ul>
+        </li>
+        <li class="divider"></li>
+        <li class="has-dropdown">
+          <a style="background-color: dark" title="Simple Cut Commands and Macros"><strong>C</strong>uts</a>
+          <ul class="dropdown" id="menu_cuts">
+            <li></li>
+          </ul>
+        </li>
+        <li class="divider"></li>
+        <li class="has-dropdown">
+          <a style="background-color: dark;"><strong>Z</strong>ero</a>
+          <ul class="dropdown" id="menu_zero">
+            <li><label>Set the Current Location of Axes to Zero</label></li>
+          </ul>
+        </li>
+        <li class="divider"></li>
+        <li class="has-dropdown">
+          <a style="background-color: dark;"><strong>S</strong>ettings</a>
+          <ul class="dropdown" id="menu_settings">
+            <li><label>Input or Change a Setting</label></li>
+          </ul>
+        </li>
+        <li class="divider"></li>
+        <li class="has-dropdown">
+          <a style="background-color: dark;"><strong>V</strong>alues</a>
+          <ul class="dropdown" id="menu_values">
+            <li><label>Set or Change Current Configuration Values</label></li>
+          </ul>
+        </li>
+        <li class="divider"></li>
+        <li class="has-dropdown">
+          <a style="background-color: dark;"><strong>H</strong>elp</a>
+          <ul class="dropdown" id="menu_help">
+            <li><label>Get Help for SB4</label></li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+  </nav>
+  <form style="display:none;" id="fileform">
+    <input name="uploadFile" type="file" id="file">
+  </form>
 
-		<script src='js/lines/LineSegmentsGeometry.js'></script>
-		<script src='js/lines/LineGeometry.js'></script>
-		<script src='js/lines/WireframeGeometry2.js'></script>
-		<script src='js/lines/LineMaterial.js'></script>
-		<script src='js/lines/LineSegments2.js'></script>
-		<script src='js/lines/Line2.js'></script>
-		<script src='js/lines/Wireframe.js'></script>
-		<script src="js/libs/jquery-3.3.1.min.js"></script>
+  <!-- Grid Layout -->
+  <div class="row">
+    <p> </p>
+    <div class="large-14 medium-12 columns">
+      <div class="row">
+        <div class="large-4 medium-4 small-6 columns">
+          <div class="callout panel" style="background-color: white;" id="speedPanel">
+            <img data-tooltip class="top" tabindex="1" title="This app is ShopBot's classic CNC interface for cutting Part Files and sending Commands in the OpenSBP language. Use Menu or 2-letter Commands followed by optional parameters followed by ENTER. See HELP > Cmd Reference for info on OpenSBP language." src="./assets/image6b.gif">
+            <p> </p>
 
-	<body>
-    <div class="container">
-			<div class="row">
-			<!--DRO Display-->
-				<div class="col"></div>
-				<div class="col" id="dro">
-					<div id="dro">
-						<p style="top: 20px" id="tool-display-x"> X ---.--- </p>
-						<p style="top: 80px" id="tool-display-y"> Y ---.--- </p>
-						<p style="top: 140px" id="tool-display-z"> Z ---.--- </p>
-					</div>
-					<div id="LittleGreenDiv">FILE</div>
-					<div id="info">
-						<p> </p>
-						<p> </p>
-						<button type="button" class="btn btn-outline-primary btn-lg bg-transparent text-reset">FILE</button>
-						<p><button class="btn btn-primary bg-transparent text-reset">MACRO</button></p>
-					</div>
-				</div>
-				<div class="col"></div>
-			</div>
-		</div>
+            <h6 title="Default feed rates and rapid speeds">Speeds</h6>
+            <div class="row">
+              <div class="large-6 medium-6 columns">
+                <label class="right"> Move X / Y &nbsp;&nbsp;</label>
+                <input type="text" placeholder="0.00" id="formatted_movexy_speed" class="text-right opensbp_input_formattedspeeds" />
+              </div>
+              <div class="large-6 medium-6 columns">
+                <label class="right"> Move Z &nbsp;&nbsp;</label>
+                <input type="text" placeholder="0.00" id="formatted_movez_speed" class="text-right opensbp_input_formattedspeeds" />
+              </div>
+            </div>
+            <div class="row">
+              <div class="large-6 medium-6 columns">
+                <label class="right"> Jog X / Y &nbsp;&nbsp;</label>
+                <input type="text" placeholder="0.00" id="formatted_jogxy_speed" class="text-right opensbp_input_formattedspeeds" />
+              </div>
+              <div class="large-6 medium-6 columns">
+                <label class="right"> Jog Z &nbsp;&nbsp;</label>
+                <input type="text" placeholder="0.00" id="formatted_jogz_speed" class="text-right opensbp_input_formattedspeeds" />
+              </div>
+            </div>
 
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-	</body>
-	
-	<script src='js/init-grid-graphics.js'></script>
-<!--	<script src='js/init-sbp-menu.js'></script> -->
+          </div>
 
-	<script src='js/get-client-info.js'></script>
-	<script src='js/main.js'></script>
-	<script src='js/configuration.js'></script>
+          <p class="small text-left">[ F11 (or right-click) to exit fullscreen; Ctl-Tab switches windows ]</p>
+          <p class="small text-left">© Copyright ShopBot Tools 2019.</p>
 
-	<script src='js/sb4.js'></script>
+        </div>
+
+        <!-- Command Input and File Display Panel  -->
+        <div class="large-8 medium-8 small-6 columns">
+          <div class="callout panel">
+            <form>
+              <div class="row">
+                <div class="large-12 columns">
+                  <label class="show-for-small-only">Command Input</label>
+                  <label class="show-for-medium-up"><strong>Command Input</strong> (select from menu above or type Commands directly here)</label>
+                  <form>
+                    <input type="text" autocomplete="off" autocorrect="off" autofill="off" spellcheck ="false" id="cmd-input" placeholder="2-Letter OpenSBP Command, {followed by parameters ...}" value="" />
+                  </form>
+                </div>
+              </div>
+              <div class="row">
+                <div class="large-12 columns">
+                  <label id="running" value="" placeholder="  "> </label>
+                  <label></label>
+                  <!--add readonly to textarea-->
+                  <!--<textarea class="show-for-small-only" rows="2" cols="50" name="textarea_filedisplay"></textarea>-->
+                  <textarea class="show-for-medium-up running" rows="3" cols="50" name="textarea_filedisplay" id="txt_area" readonly></textarea>
+                </div>
+              </div>
+            </form>
+      <!--      
+            <p class="show-for-medium-up"><strong data-tooltip class="top" tabindex="2" title="Enter Commands followed by optional parameters and then ENTER. Click HELP for more information on the open-syntax OpenSBP language."> A basic CNC interface for cutting Part Files and sending Commands in the OpenSBP language.</strong> Use <strong>FP</strong> to run Part Files or click CUT PART.</p>
+      -->
+          </div>
+        </div>
+
+        <!-- Macro Button Panel  -->
+        <div class="large-8 medium-8 small-6 columns">
+          <div class="callout panel" style="background-color: white;">
+
+            <!-- Buttons (actions) -->
+            <button type="button" class="success button small medium-expanded" id="cut_part_call" > == CUT PART ==  </button>
+            <button type="button" class="secondary button small medium-expanded" id="first_macro_button" >Home X & Y (C3)</button>
+            <button type="button" class="secondary button small medium-expanded" id="second_macro_button" >Set Z Zero (C2)</button>
+            <p class="show-for-medium-up" title="Shortcut buttons">Useful commands and macros.</p>
+
+          </div>
+        </div>  
+
+      </div>
+    </div>
+  </div>
+
+  <!--
+  <footer class="row">
+    <div class="large-12 columns">
+      <div class="row">
+        <div class="large-6 columns">
+          <p>[ Alt-F4 exits kiosk mode; Ctl-Tab switches windows ]</p>
+          <p>© Copyright ShopBot Tools 2018.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  -->
+  
+  <script src="js/configuration.js"></script>
+  <script src="js/sb4.js"></script>
+  <script src="js/lib/foundation.min.js"></script>
+  <script src="js/foundation/foundation.dropdown.js"></script>
+  <script src="js/lib/fastclick.js"></script>
+
+</body>
 
 </html>
+
+
+

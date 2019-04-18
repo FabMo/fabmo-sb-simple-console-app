@@ -1,0 +1,19 @@
+body {
+	margin-top: 0px;
+	overflow: hidden;
+}
+body.noScroll body.dialogShowing { /* ...or body.dialogShowing */
+	overflow: hidden;
+  }
+  
+#config-system-config {
+	font-family: monospace;
+	word-wrap: break-word;
+}
+
+#txt_area {
+	background: #327C7E;
+	border: 1px solid #646464;
+	color: rgb(191, 196, 184);
+	resize: none;
+}
