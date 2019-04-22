@@ -1,10 +1,27 @@
 body {
-	background-color: rgb(235,136,55);
+ /*	background-color: #bfd1e5; */
+        /* gradient fallbacks taken from csstricks.com */
+				background-color: grey;
+				/* SVG fallback for IE 9 (could be data URI, or could use filter) */
+	/*	  background-image: url(fallback-gradient.svg); */
+				/* Safari 4, Chrome 1-9, iOS 3.2-4.3, Android 2.1-3.0 */
+				background-image: -webkit-gradient(linear, left top, right top, from(grey), to(#f06d06));
+				/* Safari 5.1, iOS 5.0-6.1, Chrome 10-25, Android 4.0-4.3 */
+				background-image: -webkit-linear-gradient(left, grey, #f06d06);
+				/* Firefox 3.6 - 15 */
+				background-image: -moz-linear-gradient(left, grey, #f06d06);
+				/* Opera 11.1 - 12 */
+				background-image: -o-linear-gradient(left, grey, #f06d06);
+				/* Opera 15+, Chrome 25+, IE 10+, Firefox 16+, Safari 6.1+, iOS 7+, Android 4.4+ */
+				background-image: linear-gradient(to right, grey, #f06d06);
+				margin: 0px;
+				overflow: hidden;
+	/* background-color: rgb(235,136,55);
 	margin-top: 0px;
-	overflow: hidden;
+	overflow: hidden; */
 }
 .body-container{
-	background-color:rgb(235,136,55)!important;
+	/* background-color:rgb(235,136,55)!important; */
 }
 
 body.noScroll body.dialogShowing { /* ...or body.dialogShowing */
@@ -16,20 +33,20 @@ a.dinput {
 	margin-top: 5px;
 	padding: 3px;
 	color: rgb(150, 86, 14);
-	background-color: rgba(101, 206, 4, 0.4);
+	background-color: rgba(169, 206, 4, 0.4);
 	border-width: 1px;
-	border-color: rgba(255, 226, 5, 0.712);
-	outline-color: rgba(255, 226, 5, 0.712);
+	border-color: rgba(138, 255, 5, 0.712);
+	outline-color: rgba(138, 255, 5, 0.712);
 	}
 a.doutput {
 	margin: 1px;
 	margin-top: 5px;
 	padding: 3px;
 	color: rgb(14, 107, 150);
-	background-color: rgba(4, 115, 206, 0.4);
+	background-color: rgba(4, 149, 206, 0.4);
 	border-width: 1px;
-	border-color: rgba(255, 226, 5, 0.712);
-	outline-color: rgba(255, 226, 5, 0.712);
+	border-color: rgba(5, 205, 255, 0.712);
+	outline-color: rgba(5, 205, 255, 0.712);
 }
 
 
@@ -38,7 +55,8 @@ a.doutput {
     font-size:75px;
 		text-align: center;
 		border:none;
-		background-color: rgb(235,136,55);
+		background-color: transparent;
+		/* background-color: rgb(235,136,55); */
 		color: #FFE105;
     line-height:100%;
     text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em #f00;
@@ -48,29 +66,42 @@ a.doutput {
 
 #macros {
     font-family: 'Roboto Mono', monospace;
-    font-size:75px;
 		text-align: center;
-		border-radius: .25em;
-		background-color: rgba(247, 139, 51, 0.808);
-		border-color: rgba(255, 226, 5, 0.712);
-    line-height:100%;
-    text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em #f00;
-}
-
-  #config-system-config {
-	font-family: monospace;
-	word-wrap: break-word;
+		border-radius: .5em;
+		background-color: rgba(189, 119, 63, 0.6);
+		border-color: rgba(226, 203, 31, 0.712);
+		line-height:100%;
+		color: rgba(247, 247, 25, 0.808);
+		text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em #f00;
+		margin: .25em;
 }
 
 #cut_part_call {
+	font-family: 'Roboto Mono', monospace;
+	font-size:2em;
 	background-color: rgba(11, 155, 35, 0.50);
 	text-decoration-color: rgba(255, 226, 5, 0.815);
 	border-radius: .25em;
+	padding-top: .1em;
+	padding-bottom: .1em;
+	margin-top: .1em;
+	margin-bottom: .1em;
+
 }
+#cut_part_call:hover, #cut_part_call.button:hover, .button:focus {
+	background-color: #096625; }
+
 #first_macro_button, #second_macro_button {
-	background-color: rgba(216, 126, 53, 0.582);
-	text-decoration-color: rgba(255, 226, 5, 0.815);
+	font-family: 'Roboto Mono', monospace;
+	font-size:2em;
+	background-color: rgba(206, 188, 27, 0.25);
+	text-decoration-color: rgba(255, 226, 5, 0.6);
 	border-radius: .25em;
+	padding-top: .1em;
+	padding-bottom: .1em;
+	margin-top: .1em;
+	margin-bottom: .1em;
+	
 }
 
 #txt_area {
@@ -78,4 +109,9 @@ a.doutput {
 	border: 1px solid #646464;
 	color: rgb(191, 196, 184);
 	resize: none;
+}
+
+#config-system-config {
+	font-family: monospace;
+	word-wrap: break-word;
 }
