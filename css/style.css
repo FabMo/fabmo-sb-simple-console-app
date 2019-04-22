@@ -11,13 +11,35 @@ body.noScroll body.dialogShowing { /* ...or body.dialogShowing */
 	overflow: hidden;
   }
   
-#dro, #tool-display-x, #tool-display-y, #tool-display-z {
+a.dinput {
+	margin: 1px;
+	margin-top: 5px;
+	padding: 3px;
+	color: rgb(150, 86, 14);
+	background-color: rgba(101, 206, 4, 0.4);
+	border-width: 1px;
+	border-color: rgba(255, 226, 5, 0.712);
+	outline-color: rgba(255, 226, 5, 0.712);
+	}
+a.doutput {
+	margin: 1px;
+	margin-top: 5px;
+	padding: 3px;
+	color: rgb(14, 107, 150);
+	background-color: rgba(4, 115, 206, 0.4);
+	border-width: 1px;
+	border-color: rgba(255, 226, 5, 0.712);
+	outline-color: rgba(255, 226, 5, 0.712);
+}
+
+
+	#dro, #tool-display-x, #tool-display-y, #tool-display-z, #tool-display-a, #tool-display-b {
     font-family: 'Roboto Mono', monospace;
     font-size:75px;
 		text-align: center;
 		border:none;
-	background-color: rgb(235,136,55);
-	color: #FFE105;
+		background-color: rgb(235,136,55);
+		color: #FFE105;
     line-height:100%;
     text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em #f00;
 /*,    0 0 0.4em #77f;
