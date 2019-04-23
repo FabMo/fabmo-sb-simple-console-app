@@ -15,7 +15,10 @@
 <body>
   <script src="js/lib/modernizr.js"></script>
   <script src="js/lib/jquery.js"></script>
-  <script src="js/lib/bootstrap.min.js"></script>
+  <script src="js/lib/foundation.min.js"></script>
+  <script src="js/lib/foundation.dropdown.js"></script>
+  <script src="js/lib/fastclick.js"></script>
+
   <script src="js/lib/fabmo.js"></script>
   <script> let fabmo = new FabMoDashboard();</script>
 
@@ -83,20 +86,17 @@
         <!-- Macro Button Panel  -->
         <div class="large-12 columns">
           <div class="callout panel" id="macros">
-
             <!-- Buttons (actions) -->
             <button type="button" class="button success large expand radius macros" id="cut_part_call" style="color:rgba(251, 255, 20, 0.76)" > == CUT PART ==  </button>
             <button type="button" class="secondary button large expand radius macros" id="first_macro_button" style="color:rgba(251, 255, 20, 0.76)">Home X & Y (C3)</button>
             <button type="button" class="secondary button large expand radius macros" id="second_macro_button" style="color:rgba(251, 255, 20, 0.76)" >Set Z Zero (C2)</button>
             <p class="show-for-medium-up" title="Access other Macros from left-side menu" style="color:rgba(251, 255, 20, 0.40)">Useful Commands and Macros</p>
-
           </div>
         </div>  
 
       </div>
+      <p id="copyright"> © Copyright ShopBot Tools 2019.</p>
     
-
-
   <!--
   <footer class="row">
     <div class="large-12 columns">
@@ -110,11 +110,9 @@
   </footer>
   -->
   
-  <script src="js/configuration.js"></script>
-  <script src="js/sb4.js"></script>
-  <script src="js/lib/foundation.min.js"></script>
-  <script src="js/foundation/foundation.dropdown.js"></script>
-  <script src="js/lib/fastclick.js"></script>
+  <script src="js/initialize_ready.js"></script>
+  <script src="js/tool_config.js"></script>
+  <script src="js/sb_app.js"></script>
 
 </body>
 
