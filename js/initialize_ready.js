@@ -2,6 +2,16 @@
  * Initialize App on Document-Ready
  * Most Event Handling
  */
+// Global true position tracking
+window.globals = {
+	TOol_x: 0,                                  	// REAL LOCATIONS OF TOOL from G2
+	TOol_y: 0,                                  	// ... had to set as windows.globals to get for paperjs
+	TOol_z: 0,										// ... best way for 3js?
+	TOol_a: 0,
+	TOol_b: 0,
+	TOol_c: 0,
+	G2_state: ""
+}
 
 let cmds = [];
 
@@ -20,10 +30,10 @@ $(document).ready(function() {
     });
 
     // *** Let' Figure out where we are ...
-    let pathname = window.location.pathname; // Returns path only (/path/example.html)
+  //  let pathname = window.location.pathname; // Returns path only (/path/example.html)
     let url      = window.location.href;     // Returns full URL (https://example.com/path/example.html)
     let origin   = window.location.origin;   // Returns base URL (https://example.com)
-    console.log("pathname- " + pathname);
+  //  console.log("pathname- " + pathname);
     console.log("url- " + url);
     console.log("origin- " + origin);
     $("#copyright").append("   [" + origin + "]");
@@ -32,7 +42,6 @@ $(document).ready(function() {
     $.getJSON(     // ## never solved problem of getting into index.html for debug
       'assets/sb3_commands.json',       // Originally from 'https://raw.githubusercontent.com/FabMo/FabMo-Engine/master/runtime/opensbp/sb3_commands.json'
       function(data) {                  // ... now using local copy with lots of mods and updates
-console.log(data)        
         getExcludedAxes(function(excluded_axes_str){
           for (key in data) {
             switch (key.substring(0, 1)) {
@@ -52,7 +61,6 @@ console.log(data)
               case "C":
                 $("#menu_cuts").append('<li class="menuDD" id="' + key + '"><a >' + key + ' - ' + data[key]["name"] || "Unnamed" + '</a></li>');
                 cmds[key]=data[key];
-                console.log(cmds[key])
                 break;
               case "Z":
                 if (excluded_axes_str.indexOf(key.substring(1,2)) == -1) {
@@ -171,24 +179,24 @@ console.log(data)
       }
     });
 
-    // ** Final run CALL for FP command; first clears anything in JogQueue then Runs and puts file in JobManager history then clears file remnants
-      let curFilename, curFile
-      let lines = new Array()
-		document.getElementById('file').addEventListener('input', function(evt) {
-      let file = document.getElementById("file").files[0];
-      let fileReader = new FileReader();
-      fileReader.onload = function(fileLoadedEvent){
-          lines = fileLoadedEvent.target.result.split('\n');
-          for(let line = 0; line < lines.length; line++){
-          //  console.log(line + ">>>" + lines[line]);
-          }
-          curFile = file
-      };
-      fileReader.readAsText(file, "UTF-8");
-      curFilename = evt.target.files[0].name;
-      $("#curfilename").text(curFilename);
-      $('#myModal').foundation('reveal', 'open');
-    })
+    // // ** Final run CALL for FP command; first clears anything in JogQueue then Runs and puts file in JobManager history then clears file remnants
+    //   let curFilename, curFile
+    //   let lines = new Array()
+		// document.getElementById('file').addEventListener('input', function(evt) {
+    //   let file = document.getElementById("file").files[0];
+    //   let fileReader = new FileReader();
+    //   fileReader.onload = function(fileLoadedEvent){
+    //       lines = fileLoadedEvent.target.result.split('\n');
+    //       for(let line = 0; line < lines.length; line++){
+    //       //  console.log(line + ">>>" + lines[line]);
+    //       }
+    //       curFile = file
+    //   };
+    //   fileReader.readAsText(file, "UTF-8");
+    //   curFilename = evt.target.files[0].name;
+    //   $("#curfilename").text(curFilename);
+    //   $('#myModal').foundation('reveal', 'open');
+    // })
 
         $("#btn_ok_run").click(function(event) {
           //console.log(curFilename);
@@ -239,17 +247,31 @@ console.log(data)
     // ** STATUS: Report Ongoing and Clear Command Line after a status report is recieved    ## Need a clear after esc too
     fabmo.on('status', function(status) {
         console.log(status.state);
-        let lineDisplay = "";
-        if (status.nb_lines > 0) {           // If we're running a file ...
-            lineDisplay = "Running:  " + curFilename + '\n'
-            lineDisplay += "-----------------------------------" + '\n'
-            lineDisplay += "  " + (status.line - 1) + "  " + lines[status.line - 1] + '\n' 
-            lineDisplay += "> " + status.line  + "  " + lines[status.line] + '\n' 
-            lineDisplay += "  " + (status.line + 1) + "  " + lines[status.line + 1] + '\n' 
-            lineDisplay += "  " + (status.line + 2) + "  " + lines[status.line + 2] + '\n' 
-            $("#txt_area").text(lineDisplay);
-            $('#cmd-input').val('>');
-        }
+
+        globals.TOol_x = status.posx;               // get LOCATION GLOBALS
+    console.log(globals.TOol_x)
+        globals.TOol_y = status.posy;
+        globals.TOol_z = status.posz;
+        globals.TOol_a = status.posa;
+        globals.TOol_b = status.posb;
+        globals.G2_state = status.state;
+                              // and display them
+        document.getElementById("tool-display-x").innerHTML = (globals.TOol_x<0?"X ":"X +") + globals.TOol_x.toFixed(3);
+        document.getElementById("tool-display-y").innerHTML = (globals.TOol_y<0?"Y ":"Y +") + globals.TOol_y.toFixed(3);
+        document.getElementById("tool-display-z").innerHTML = (globals.TOol_z<0?"Z ":"Z +") + globals.TOol_z.toFixed(3);
+      
+
+        // let lineDisplay = "";
+        // if (status.nb_lines > 0) {           // If we're running a file ...
+        //     lineDisplay = "Running:  " + curFilename + '\n'
+        //     lineDisplay += "-----------------------------------" + '\n'
+        //     lineDisplay += "  " + (status.line - 1) + "  " + lines[status.line - 1] + '\n' 
+        //     lineDisplay += "> " + status.line  + "  " + lines[status.line] + '\n' 
+        //     lineDisplay += "  " + (status.line + 1) + "  " + lines[status.line + 1] + '\n' 
+        //     lineDisplay += "  " + (status.line + 2) + "  " + lines[status.line + 2] + '\n' 
+        //     $("#txt_area").text(lineDisplay);
+        //     $('#cmd-input').val('>');
+        // }
         if (status.state === "running") {
             $('#cmd-input').val(' ');
         }    
@@ -294,5 +316,7 @@ console.log(data)
   
     //console.log("Speed is: " + speed_XY.toFixed(2));
     //console.log("Twice the speed is: " + (2*speed_XY).toFixed(2));
+
+  fabmo.requestStatus();                    // Trigger first report from tool
   });
   
