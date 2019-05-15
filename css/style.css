@@ -33,7 +33,7 @@ a.dinput {
 	margin-top: 5px;
 	padding: 3px;
 	color: rgb(14, 107, 150);
-	background-color: rgba(4, 149, 206, 0.2);
+	background-color: transparent;/*rgba(4, 149, 206, 0.2);*/
 	border-width: 1px;
 	border-color: rgba(5, 205, 255, 0.712);
 	outline-color: rgba(5, 205, 255, 0.712);
@@ -43,7 +43,7 @@ a.doutput {
 	margin-top: 5px;
 	padding: 3px;
 	color: rgb(54, 119, 24);
-	background-color: rgba(169, 206, 4, 0.2);
+	background-color: transparent;/*rgba(169, 206, 4, 0.2);*/
 	border-width: 1px;
 	border-color: rgba(138, 255, 5, 0.712);
 	outline-color: rgba(138, 255, 5, 0.712);
