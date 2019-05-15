@@ -29,6 +29,8 @@ $(document).ready(function() {
       }
     });
 
+    //document.body.setAttribute( "style", "-webkit-transform: rotate(-90deg);"); rotates, but not very useful
+
     // *** Let' Figure out where we are ...
   //  let pathname = window.location.pathname; // Returns path only (/path/example.html)
     let url      = window.location.href;     // Returns full URL (https://example.com/path/example.html)
