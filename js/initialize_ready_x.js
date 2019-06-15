@@ -261,6 +261,8 @@ $(document).ready(function() {
         document.getElementById("tool-display-x").innerHTML = (globals.TOol_x<0?"X ":"X +") + globals.TOol_x.toFixed(3);
         document.getElementById("tool-display-y").innerHTML = (globals.TOol_y<0?"Y ":"Y +") + globals.TOol_y.toFixed(3);
         document.getElementById("tool-display-z").innerHTML = (globals.TOol_z<0?"Z ":"Z +") + globals.TOol_z.toFixed(3);
+        document.getElementById("tool-display-a").innerHTML = (globals.TOol_a<0?"A ":"A +") + globals.TOol_a.toFixed(2);
+        document.getElementById("tool-display-b").innerHTML = (globals.TOol_b<0?"B ":"B +") + globals.TOol_b.toFixed(2);
       
 
         // let lineDisplay = "";

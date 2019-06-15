@@ -23,42 +23,89 @@
   <script> let fabmo = new FabMoDashboard();</script>
 
   <!-- Layout -->
-        <!-- I-O and DRO Display Panel  -->
-        <div class="large-12 columns">
+  <div class="row">
+
+        <!-- Macro Button Panel (medium up; left position)  -->
+        <div class="small-12 medium-6 columns show-for-medium-up">
+            <p class="show-for-medium-up">&nbsp</p>
+            <div class="callout panel" id="macros">
+            <!-- Buttons (actions) -->
+            <button type="button" class="button success large radius macros" id="cut_part_call" style="color:rgba(251, 255, 20, 0.76)"> === CUT PART ===  </button>
+            <button type="button" class="secondary button large radius macros" id="first_macro_button" style="color:rgba(251, 255, 20, 0.76)">Home X & Y (C3)</button>
+            <button type="button" class="secondary button large radius macros" id="second_macro_button" style="color:rgba(251, 255, 20, 0.76)" >Set Z Zero (C2)</button>
+            <p class="show-for-medium-up" title="Access other Macros from left-side menu" style="color:rgba(251, 255, 20, 0.40)">Useful Commands and Macros</p>
+          </div>
+        </div>  
+
+        <!-- DRO Display Panel  -->
+        <div class="small-12 medium-6 columns">
           <div class="callout panel" id="dro">
-            <form>
-              <div class="row">
-                <div class="large-12 columns">
-                    <ul class="button-group readonly">
+            <p style="top: 20px" id="tool-display-x"> X ---.--- </p>
+            <p style="top: 80px" id="tool-display-y"> Y ---.--- </p>
+            <p style="top: 140px" id="tool-display-z"> Z ---.--- </p>
+            <p style="top: 200px" id="tool-display-a"> A ---.--- </p>
+            <p style="top: 260px" id="tool-display-b"> B ---.--- </p>
+          </div>
+        </div>
+
+        <!-- Macro Button Panel (small only; lower position)  -->
+        <div class="small-12 medium-6 columns show-for-small-only">
+            <div class="callout panel" id="macros">
+            <!-- Buttons (actions) -->
+            <button type="button" class="button success large radius macros" id="cut_part_call" style="color:rgba(251, 255, 20, 0.76)"> === CUT PART ===  </button>
+            <button type="button" class="secondary button large radius macros" id="first_macro_button" style="color:rgba(251, 255, 20, 0.76)">Home X & Y (C3)</button>
+            <button type="button" class="secondary button large radius macros" id="second_macro_button" style="color:rgba(251, 255, 20, 0.76)" >Set Z Zero (C2)</button>
+            <p class="show-for-medium-up" title="Access other Macros from left-side menu" style="color:rgba(251, 255, 20, 0.40)">Useful Commands and Macros</p>
+          </div>
+        </div>  
+
+
+        <!-- I/O Display Panel  -->
+        <div class="small-12 medium-6 columns">
+                    <ul class="button-group readonly" id="inputs">
                       <li><label class="show-for-small-only"></label></li>
                       <li><label class="show-for-medium-up">Inputs</label></li>
+                      <li><a class="spacer">&nbsp</a></li>
+                      <li><a class="spacer">&nbsp</a></li>
+                      <li><a class="spacer">&nbsp</a></li>
                       <li><a class="dinput button radius" id="inp1">1</a></li>
                       <li><a class="dinput button radius" id="inp2">2</a></li>
                       <li><a class="dinput button radius" id="inp3">3</a></li>
                       <li><a class="dinput button radius" id="inp4">4</a></li>
+                      <li><a class="spacer">&nbsp</a></li>
+                      <li><a class="spacer">&nbsp</a></li>
                       <li><a class="spacer">&nbsp</a></li>
                       <li><a class="dinput button radius" id="inp5">5</a></li>
                       <li><a class="dinput button radius" id="inp6">6</a></li>
                       <li><a class="dinput button radius" id="inp7">7</a></li>
                       <li><a class="dinput button radius" id="inp8">8</a></li>
                       <li><a class="spacer">&nbsp</a></li>
+                      <li><a class="spacer">&nbsp</a></li>
+                      <li><a class="spacer">&nbsp</a></li>
                       <li><a class="dinput button radius" id="inp9">9</a></li>
                       <li><a class="dinput button radius" id="inp10">10</a></li>
                       <li><a class="dinput button radius" id="inp11">11</a></li>
                       <li><a class="dinput button radius" id="inp12">12</a></li>
                     </ul>
-                    <ul class="button-group">
+                    <ul class="button-group" id="outputs">
                       <li><label class="show-for-small-only"></label></li>
-                      <li><label class="show-for-medium-up">Output</label></li>
+                      <li><label class="show-for-medium-up">Outputs</label></li>
+                      <li><a class="spacer">&nbsp</a></li>
+                      <li><a class="spacer show-for-small-only">&nbsp</a></li>
+                      <li><a class="spacer show-for-small-only">&nbsp</a></li>
                       <li><a class="doutput button radius" id="out1">1</a></li>
                       <li><a class="doutput button radius" id="out2">2</a></li>
                       <li><a class="doutput button radius" id="out3">3</a></li>
                       <li><a class="doutput button radius" id="out4">4</a></li>
                       <li><a class="spacer">&nbsp</a></li>
+                      <li><a class="spacer">&nbsp</a></li>
+                      <li><a class="spacer">&nbsp</a></li>
                       <li><a class="doutput button radius" id="out5">5</a></li>
                       <li><a class="doutput button radius" id="out6">6</a></li>
                       <li><a class="doutput button radius" id="out7">7</a></li>
                       <li><a class="doutput button radius" id="out8">8</a></li>
+                      <li><a class="spacer">&nbsp</a></li>
+                      <li><a class="spacer">&nbsp</a></li>
                       <li><a class="spacer">&nbsp</a></li>
                       <li><a class="doutput button radius" id="out9">9</a></li>
                       <li><a class="doutput button radius" id="out10">10</a></li>
@@ -66,36 +113,11 @@
                       <li><a class="doutput button radius" id="out12">12</a></li>
                      </ul>
                      <p></p>
-                </div>
-              </div>
-              <div class="row">
-                <div class="large-12 columns">
-                  <div>
-                    <p style="top: 20px" id="tool-display-x"> X ---.--- </p>
-                    <p style="top: 80px" id="tool-display-y"> Y ---.--- </p>
-                    <p style="top: 140px" id="tool-display-z"> Z ---.--- </p>
-                    <p style="top: 200px" id="tool-display-a"> A ---.--- </p>
-                    <p style="top: 260px" id="tool-display-b"> B ---.--- </p>
-                  </div>
-                </div>
-              </div>
-            </form>
-          </div>
+                     <p id="copyright"> © Copyright ShopBot Tools 2019.</p>
         </div>
+            
+  </div>
 
-        <!-- Macro Button Panel  -->
-        <div class="large-12 columns">
-          <div class="callout panel" id="macros">
-            <!-- Buttons (actions) -->
-            <button type="button" class="button success large expand radius macros" id="cut_part_call" style="color:rgba(251, 255, 20, 0.76)" > == CUT PART ==  </button>
-            <button type="button" class="secondary button large expand radius macros" id="first_macro_button" style="color:rgba(251, 255, 20, 0.76)">Home X & Y (C3)</button>
-            <button type="button" class="secondary button large expand radius macros" id="second_macro_button" style="color:rgba(251, 255, 20, 0.76)" >Set Z Zero (C2)</button>
-            <p class="show-for-medium-up" title="Access other Macros from left-side menu" style="color:rgba(251, 255, 20, 0.40)">Useful Commands and Macros</p>
-          </div>
-        </div>  
-
-      </div>
-      <p id="copyright"> © Copyright ShopBot Tools 2019.</p>
     
   <!--
   <footer class="row">

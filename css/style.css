@@ -15,18 +15,23 @@ body {
 				/* Opera 15+, Chrome 25+, IE 10+, Firefox 16+, Safari 6.1+, iOS 7+, Android 4.4+ */
 				background-image: linear-gradient(to right, grey, #f06d06c9);
 				margin: 0px;
-				overflow: hidden;
+			
 	/* background-color: rgb(235,136,55);
 	margin-top: 0px;
 	overflow: hidden; */
 }
-.body-container{
+/*.body-container{*/
 	/* background-color:rgb(235,136,55)!important; */
-}
 
+/*
 body.noScroll body.dialogShowing { /* ...or body.dialogShowing */
-	overflow: hidden;
+/*	overflow: hidden;
   }
+*/
+
+#inputs, #outputs {
+	margin-left: 12%;
+}  
   
 a.dinput {
 	margin: 1px;
@@ -56,7 +61,7 @@ a.doutput {
 
 #dro, #tool-display-x, #tool-display-y, #tool-display-z, #tool-display-a, #tool-display-b {
     font-family: 'Roboto Mono', monospace;
-    font-size:75px;
+    font-size:55px;
 		text-align: center;
 		border:none;
 		background-color: transparent;
@@ -69,10 +74,10 @@ a.doutput {
 }
 
 #macros {
-    font-family: 'Roboto Mono', monospace;
+	font-family: 'Roboto Mono', monospace;
 		text-align: center;
 		border-radius: .5em;
-		background-color: rgba(189, 119, 63, 0.6);
+		background-color: rgba(189, 120, 63, 0.062);
 		border-color: rgba(226, 203, 31, 0.712);
 		line-height:100%;
 		color: rgba(247, 247, 25, 0.808);
