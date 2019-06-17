@@ -4,7 +4,7 @@
   "icon": "icon.png",
   "icon_color": "grey",
   "author": "Ted Hall",
-  "version": "0.0.03",
+  "version": "0.0.04",
   "website": "http://www.shopbottools.com",
   "description": "Simple DRO Interface for FabMo/Sb4",
   "id": "fabmo-console",
