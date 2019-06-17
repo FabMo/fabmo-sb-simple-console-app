@@ -3,6 +3,17 @@
  * Most Event Handling
  */
 
+// Global true position tracking
+window.globals = {
+	TOol_x: 0,                                  	// REAL LOCATIONS OF TOOL from G2
+	TOol_y: 0,                                  	// ... had to set as windows.globals to get for paperjs
+	TOol_z: 0,										// ... best way for 3js?
+	TOol_a: 0,
+	TOol_b: 0,
+	TOol_c: 0,
+	G2_state: ""
+}
+
 let cmds = [];
 
 $(document).ready(function() {
@@ -240,6 +251,21 @@ $(document).ready(function() {
     // ** STATUS: Report Ongoing and Clear Command Line after a status report is recieved    ## Need a clear after esc too
     fabmo.on('status', function(status) {
         console.log(status.state);
+
+        globals.TOol_x = status.posx;               // get LOCATION GLOBALS
+    console.log(globals.TOol_x)
+        globals.TOol_y = status.posy;
+        globals.TOol_z = status.posz;
+        globals.TOol_a = status.posa;
+        globals.TOol_b = status.posb;
+        globals.G2_state = status.state;
+                              // and display them
+        document.getElementById("tool-display-x").innerHTML = (globals.TOol_x<0?"X ":"X +") + globals.TOol_x.toFixed(3);
+        document.getElementById("tool-display-y").innerHTML = (globals.TOol_y<0?"Y ":"Y +") + globals.TOol_y.toFixed(3);
+        document.getElementById("tool-display-z").innerHTML = (globals.TOol_z<0?"Z ":"Z +") + globals.TOol_z.toFixed(3);
+        document.getElementById("tool-display-a").innerHTML = (globals.TOol_a<0?"A ":"A +") + globals.TOol_a.toFixed(2);
+        document.getElementById("tool-display-b").innerHTML = (globals.TOol_b<0?"B ":"B +") + globals.TOol_b.toFixed(2);
+      
         let lineDisplay = "";
         if (status.nb_lines > 0) {           // If we're running a file ...
             lineDisplay = "Running:  " + curFilename + '\n'
@@ -310,5 +336,8 @@ $(document).ready(function() {
   
     //console.log("Speed is: " + speed_XY.toFixed(2));
     //console.log("Twice the speed is: " + (2*speed_XY).toFixed(2));
+
+    fabmo.requestStatus();                    // Trigger first report from tool
+
   });
   

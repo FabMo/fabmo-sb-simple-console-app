@@ -5,15 +5,15 @@ body {
 				/* SVG fallback for IE 9 (could be data URI, or could use filter) */
 	/*	  background-image: url(fallback-gradient.svg); */
 				/* Safari 4, Chrome 1-9, iOS 3.2-4.3, Android 2.1-3.0 */
-				background-image: -webkit-gradient(linear, left top, right top, from(grey), to(#f06b06c9));
+				background-image: -webkit-gradient(linear, left top, right top, from(grey), to(#ac4c03c9));
 				/* Safari 5.1, iOS 5.0-6.1, Chrome 10-25, Android 4.0-4.3 */
-				background-image: -webkit-linear-gradient(left, grey, #f06d06c9);
+				background-image: -webkit-linear-gradient(left, grey, #ac4c03c9);
 				/* Firefox 3.6 - 15 */
-				background-image: -moz-linear-gradient(left, grey, #f06d06c9);
+				background-image: -moz-linear-gradient(left, grey, #ac4c03c9);
 				/* Opera 11.1 - 12 */
-				background-image: -o-linear-gradient(left, grey, #f06d06c9);
+				background-image: -o-linear-gradient(left, grey, #ac4c03c9);
 				/* Opera 15+, Chrome 25+, IE 10+, Firefox 16+, Safari 6.1+, iOS 7+, Android 4.4+ */
-				background-image: linear-gradient(to right, grey, #f06d06c9);
+				background-image: linear-gradient(to right, grey, #ac4c03c9);
 				margin: 0px;
 			
 	/* background-color: rgb(235,136,55);
@@ -30,7 +30,7 @@ body.noScroll body.dialogShowing { /* ...or body.dialogShowing */
 */
 
 #inputs, #outputs {
-	margin-left: 12%;
+	margin-left: 10%;
 }  
   
 a.dinput {
@@ -66,9 +66,9 @@ a.doutput {
 		border:none;
 		background-color: transparent;
 		/* background-color: rgb(235,136,55); */
-		color: #FFE105;
+		color: rgb(255, 247, 189);
     line-height:100%;
-    text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em #f00;
+    text-shadow: 0 0 0.1em rgb(253, 255, 105), 0 0 0.2em #fff, 0 0 0.3em #f00;
 /*,    0 0 0.4em #77f;
  ,  0 0 0.6em #00f, 0 0 0.8em #00f, 0 0 1.0em #00f, 0 0 1.2em #00f; */
 }
