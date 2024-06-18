@@ -337,6 +337,8 @@ $(document).ready(function() {
     //console.log("Speed is: " + speed_XY.toFixed(2));
     //console.log("Twice the speed is: " + (2*speed_XY).toFixed(2));
 
+    fabmo.hideNav();                          // Remove topbar
+    fabmo.hideDRO();                          // Remove DRO 
     fabmo.requestStatus();                    // Trigger first report from tool
 
   });
